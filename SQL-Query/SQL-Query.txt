@@ -1,0 +1,19 @@
+select
+	u.user_id ,
+	u.user_name,
+	td.training_id,
+	td.training_date,
+	count(1) as 'count'
+from
+	users u
+join training_details td on
+	u.user_id = td.user_id
+group by
+	user_name,
+	user_id,
+	td.training_id,
+	td.training_date
+having
+	count(1) > 1
+order by
+	training_date desc;
